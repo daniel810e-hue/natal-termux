@@ -2,10 +2,10 @@
 
 # ===== MUDE SÓ ESTAS 5 LINHAS =====
 USUARIO="daniel810e-hue"
-REPO="nome-do-repositorio"
-COMANDO="nome-do-comando"
+REPO="gamkers-monitor"
+COMANDO="monitor"
 ARQUIVO="gamkers_monitor.py"
-DEPENDENCIAS="requests flask"
+DEPENDENCIAS=""
 # ==================================
 
 PASTA="$HOME/$REPO"
