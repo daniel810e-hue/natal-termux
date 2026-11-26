@@ -1,25 +1,28 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# Instalador do projeto "Natal no Termux"
 
-REPO="https://github.com/daniel810e-hue/natal-termux.git"
-PASTA="$HOME/natal-termux"
+# ===== MUDE SÓ ESTAS 5 LINHAS =====
+USUARIO="daniel810e-hue"
+REPO="nome-do-repositorio"
+COMANDO="nome-do-comando"
+ARQUIVO="gamkers_monitor.py"
+DEPENDENCIAS="requests flask"
+# ==================================
 
-echo "Instalando Natal no Termux..."
+PASTA="$HOME/$REPO"
 
 pkg update -y
-pkg install git -y
+pkg install python git -y
+[ -n "$DEPENDENCIAS" ] && pip install $DEPENDENCIAS
 
-# Se já existe, atualiza. Se não, baixa.
 if [ -d "$PASTA" ]; then
   cd "$PASTA" && git pull
 else
-  git clone "$REPO" "$PASTA"
+  git clone "https://github.com/$USUARIO/$REPO.git" "$PASTA"
 fi
 
-# Cria o comando "natal" que funciona de qualquer pasta
-chmod +x "$PASTA/natal.sh"
-ln -sf "$PASTA/natal.sh" "$PREFIX/bin/natal"
+echo '#!/data/data/com.termux/files/usr/bin/bash' > "$PREFIX/bin/$COMANDO"
+echo "cd $PASTA" >> "$PREFIX/bin/$COMANDO"
+echo "python $ARQUIVO" >> "$PREFIX/bin/$COMANDO"
+chmod +x "$PREFIX/bin/$COMANDO"
 
-echo ""
-echo "Pronto! Agora digite: natal"
-natal
+echo "Pronto! Digite: $COMANDO"

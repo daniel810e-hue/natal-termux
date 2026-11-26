@@ -1,27 +1,41 @@
-# Natal no Termux
+# Teste de carga do site
 
-Projeto exemplo de dezembro. Mostra uma árvore de Natal, uma mensagem de boas-vindas e quantos dias faltam para o Natal.
+Teste de carga em estágios (sobe a carga aos poucos) para descobrir em que ponto o seu site começa a degradar. Mostra RPS, % de falhas e tempos p50/p95/p99.
+
+Use só no seu próprio site.
 
 ## Instalar (um comando só)
 
 Cole no Termux:
 
 ```
-curl -sL https://raw.githubusercontent.com/daniel810e-hue/natal-termux/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/daniel810e-hue/teste-carga-site/main/install.sh | bash
 ```
 
-## Usar depois de instalado
+## Rodar
 
 ```
-natal
+carga
 ```
+
+O resultado também é salvo em `resultado_teste_carga.csv` na pasta onde você rodou o comando.
+
+## Configurar
+
+Para mudar o site, os estágios ou os limites:
+
+```
+nano ~/teste-carga-site/teste_carga_site.py
+```
+
+Procure as variáveis `URLS` e `ESTAGIOS` no começo do arquivo.
 
 ## Atualizar
 
-Rode o comando de instalação de novo. Ele baixa a versão mais nova.
+Rode o comando de instalação de novo.
 
 ## Desinstalar
 
 ```
-rm -rf ~/natal-termux $PREFIX/bin/natal
+rm -rf ~/teste-carga-site $PREFIX/bin/carga
 ```
